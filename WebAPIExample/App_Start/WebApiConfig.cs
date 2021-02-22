@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace WebAPIExample
 {
+    /// <summary>
+    /// WebAPI configuration.
+    /// </summary>
     public static class WebApiConfig
     {
+        /// <summary>
+        /// register my settings.
+        /// </summary>
+        /// <param name="config">configuration.</param>
         public static void Register(HttpConfiguration config)
         {
-            // Web API の設定およびサービス
+            // WebAPI configuration and services.
+            
 
-            // Web API ルート
+            // WebAPI routes.
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
