@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAPIExample.Database.User
 {
@@ -9,12 +10,17 @@ namespace WebAPIExample.Database.User
     public class UserRepository
     {
         /// <summary>
+        /// Presudo database.
+        /// </summary>
+        private List<UserDao> innerDatabase = createPseudoDatabase();
+
+        /// <summary>
         /// Fetch all users.
         /// </summary>
         /// <returns>all users</returns>
         public IEnumerable<UserDao> Fetch()
         {
-            throw new NotImplementedException();
+            return innerDatabase;
         }
 
         /// <summary>
@@ -24,7 +30,7 @@ namespace WebAPIExample.Database.User
         /// <returns>target user</returns>
         public UserDao Find(int id)
         {
-            throw new NotImplementedException();
+            return innerDatabase.Where(x => x.Id == id).FirstOrDefault();
         }
 
         /// <summary>
@@ -33,7 +39,7 @@ namespace WebAPIExample.Database.User
         /// <param name="user">user info</param>
         public void Create(UserDao user)
         {
-            throw new NotImplementedException();
+            // create.
         }
 
         /// <summary>
@@ -43,7 +49,7 @@ namespace WebAPIExample.Database.User
         /// <param name="user">user info</param>
         public void Update(int id, UserDao user)
         {
-            throw new NotImplementedException();
+            // update
         }
 
         /// <summary>
@@ -52,7 +58,35 @@ namespace WebAPIExample.Database.User
         /// <param name="id">user id</param>
         public void Delate(int id)
         {
-            throw new NotImplementedException();
+            // delete
+        }
+
+        /// <summary>
+        /// Craete Pseudo-Database.
+        /// </summary>
+        /// <returns>pseudo database</returns>
+        private static List<UserDao> createPseudoDatabase()
+        {
+            var now = DateTime.Now;
+            var db = new List<UserDao>();
+
+            foreach(var cnt in Enumerable.Range(1, 10))
+            {
+                db.Add(new UserDao()
+                {
+                    Id = cnt,
+                    FamilyName = "John_" + cnt,
+                    FirstName = "Doe_" + cnt,
+                    UserName = "exam-user-" + cnt,
+                    Email = "webapi-sample-" + cnt + "@example.com",
+                    Age = 10 + (uint)cnt,
+                    Bio = "Hello world!!",
+                    CreatedAt = now,
+                    UpdatedAt = now
+                });
+            }
+
+            return db;
         }
     }
 }
