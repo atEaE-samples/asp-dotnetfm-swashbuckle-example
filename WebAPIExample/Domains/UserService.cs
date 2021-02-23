@@ -12,29 +12,34 @@ namespace WebAPIExample.Domains
         /// <summary>
         /// Fetch all user.
         /// </summary>
-        /// <returns><see cref="IEnumerable{User}"/></returns>
-        IEnumerable<User> Fetch();
+        /// <returns><see cref="IList{User}"/></returns>
+        IList<User> Fetch();
 
         /// <summary>
         /// Find user.
         /// </summary>
+        /// <param name="id">user id</param>
         /// <returns><see cref="User"/></returns>
-        User Find();
+        User Find(int id);
 
         /// <summary>
         /// Create user.
         /// </summary>
-        void Create();
+        /// <param name="user">request param</param>
+        void Create(User user);
 
         /// <summary>
         /// Update user.
         /// </summary>
-        void Update();
+        /// <param name="id">user id</param>
+        /// <param name="user">request param</param>
+        void Update(int id, User user);
 
         /// <summary>
         /// Delete user.
         /// </summary>
-        void Delete();
+        /// <param name="id">user id</param>
+        void Delete(int id);
     }
 
     /// <summary>
@@ -42,27 +47,49 @@ namespace WebAPIExample.Domains
     /// </summary>
     public class UserService : IUserService
     {
-        public void Create()
+        /// <summary>
+        /// Fetch all user.
+        /// </summary>
+        /// <returns><see cref="IList{User}"/></returns>
+        public IList<User> Fetch()
         {
             throw new NotImplementedException();
         }
 
-        public void Delete()
+        /// <summary>
+        /// Find user.
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <returns><see cref="User"/></returns>
+        public User Find(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> Fetch()
+        /// <summary>
+        /// Create user.
+        /// </summary>
+        /// <param name="user">request param</param>
+        public void Create(User user)
         {
             throw new NotImplementedException();
         }
 
-        public User Find()
+        /// <summary>
+        /// Update user.
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <param name="user">request param</param>
+        public void Update(int id, User user)
         {
             throw new NotImplementedException();
         }
 
-        public void Update()
+        /// <summary>
+        /// Delete user.
+        /// </summary>
+        /// <param name="id">user id</param>
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }

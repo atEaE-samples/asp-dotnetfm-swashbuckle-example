@@ -1,7 +1,5 @@
 using Swashbuckle.Application;
-using System.Configuration;
 using System.Web.Http;
-using System.Xml.XPath;
 using WebActivatorEx;
 using WebAPIExample;
 

@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using WebAPIExample.Domains;
 using WebAPIExample.Models;
 
 namespace WebAPIExample.Controllers
@@ -9,12 +10,27 @@ namespace WebAPIExample.Controllers
     public class UsersController : ApiController
     {
         /// <summary>
+        /// user domain service.
+        /// </summary>
+        private IUserService service;
+
+        /// <summary>
+        /// Create new UsersController instance.
+        /// </summary>
+        /// <param name="service">user domain service.</param>
+        public UsersController(IUserService service)
+        {
+            this.service = service;
+        }
+
+        /// <summary>
         /// GET api/users handler.
         /// </summary>
         /// <returns><see cref="UserResponse"/></returns>
         public UserResponse Get()
         {
-            return new UserResponse();
+            var result = service.Fetch();
+            return UserResponse.Create(result);
         }
 
         /// <summary>
@@ -24,15 +40,18 @@ namespace WebAPIExample.Controllers
         /// <returns><see cref="UserResponse"/></returns>
         public UserResponse Get(int id)
         {
-            return new UserResponse();
+            var result = service.Find(id);
+            return UserResponse.Create(result);
         }
 
         /// <summary>
         /// POST api/users
         /// </summary>
         /// <param name="value"><see cref="UserRequest"/></param>
-        public void Post([FromBody] UserRequest value)
+        public IHttpActionResult Post([FromBody] UserRequest value)
         {
+            service.Create(value.user);
+            return Ok();
         }
 
         /// <summary>
@@ -40,16 +59,20 @@ namespace WebAPIExample.Controllers
         /// </summary>
         /// <param name="id">user id</param>
         /// <param name="value"><see cref="UserRequest"/></param>
-        public void Put(int id, [FromBody] UserRequest value)
+        public IHttpActionResult Put(int id, [FromBody] UserRequest value)
         {
+            service.Update(id, value.user);
+            return Ok();
         }
 
         /// <summary>
         /// DELETE api/users/{id}
         /// </summary>
         /// <param name="id">user id</param>
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            service.Delete(id);
+            return Ok();
         }
     }
 }
