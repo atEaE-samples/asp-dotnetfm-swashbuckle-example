@@ -11,27 +11,27 @@ namespace WebAPIExample.Controllers
         /// <summary>
         /// GET api/users handler.
         /// </summary>
-        /// <returns><see cref="UsersResponse"/></returns>
-        public UsersResponse Get()
+        /// <returns><see cref="UserResponse"/></returns>
+        public UserResponse Get()
         {
-            return new UsersResponse();
+            return new UserResponse();
         }
 
         /// <summary>
         /// GET api/users/{id}
         /// </summary>
         /// <param name="id">user id</param>
-        /// <returns><see cref="UsersResponse"/></returns>
-        public UsersResponse Get(int id)
+        /// <returns><see cref="UserResponse"/></returns>
+        public UserResponse Get(int id)
         {
-            return new UsersResponse();
+            return new UserResponse();
         }
 
         /// <summary>
         /// POST api/users
         /// </summary>
-        /// <param name="value"></param>
-        public void Post([FromBody] string value)
+        /// <param name="value"><see cref="UserRequest"/></param>
+        public void Post([FromBody] UserRequest value)
         {
         }
 
@@ -39,15 +39,15 @@ namespace WebAPIExample.Controllers
         /// PUT api/users
         /// </summary>
         /// <param name="id">user id</param>
-        /// <param name="value"></param>
-        public void Put(int id, [FromBody] string value)
+        /// <param name="value"><see cref="UserRequest"/></param>
+        public void Put(int id, [FromBody] UserRequest value)
         {
         }
 
         /// <summary>
         /// DELETE api/users/{id}
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">user id</param>
         public void Delete(int id)
         {
         }
